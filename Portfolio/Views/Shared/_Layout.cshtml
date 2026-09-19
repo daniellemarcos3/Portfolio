@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Portfolio</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        body{
+            overflow-x:hidden;
+        }
+
+        .sidebar{
+            min-height:100vh;
+            background:#212529;
+        }
+
+        .sidebar .nav-link{
+            color:white;
+            margin-bottom:10px;
+        }
+
+        .sidebar .nav-link:hover{
+            background:#0d6efd;
+            border-radius:5px;
+        }
+
+        .content{
+            padding:30px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar p-4">
+
+                <h3 class="text-white text-center mb-4">
+                    My Portfolio
+                </h3>
+
+                <ul class="nav flex-column">
+
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About Me</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link">Skills</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">Projects</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Main Content -->
+
+            <div class="col-md-9 col-lg-10 content">
+
+                @RenderBody()
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

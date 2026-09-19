@@ -1,0 +1,185 @@
+﻿@model Portfolio.Models.Project
+
+@{
+    ViewData["Title"] = Model.Name;
+    var comments = ViewBag.Comments as List<Portfolio.Models.Comment>;
+}
+
+<div class="container py-5">
+
+    <!-- Back to Projects -->
+    <div class="mb-4">
+
+        <a asp-controller="Projects"
+           asp-action="Index"
+           class="text-decoration-none text-muted">
+
+            ← Back to Projects
+
+        </a>
+
+    </div>
+
+
+    <!-- Project Information -->
+    <div class="card border-0 shadow-sm overflow-hidden mb-5">
+
+        <img src="@Model.ImageUrl"
+             alt="@Model.Name"
+             class="img-fluid"
+             style="width: 100%; max-height: 500px; object-fit: cover;" />
+
+        <div class="card-body p-5">
+
+            <p class="text-uppercase text-muted fw-semibold mb-2">
+                Project @Model.Id
+            </p>
+
+            <h1 class="display-5 fw-bold mb-3">
+                @Model.Name
+            </h1>
+
+            <p class="text-muted fs-5 mb-4">
+                @Model.Description
+            </p>
+
+            <a href="@Model.GitHubLink"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-dark px-4">
+
+                View GitHub
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Comments -->
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="mb-4">
+
+                <h3 class="fw-bold mb-2">
+                    Comments
+                </h3>
+
+                <p class="text-muted">
+                    Share your thoughts about this project.
+                </p>
+
+            </div>
+
+
+            <!-- Add Comment -->
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <form asp-controller="Projects"
+                          asp-action="AddComment"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="projectId"
+                               value="@Model.Id" />
+
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Your Name
+                            </label>
+
+                            <input type="text"
+                                   name="name"
+                                   class="form-control"
+                                   placeholder="Enter your name"
+                                   required />
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Comment
+                            </label>
+
+                            <textarea name="message"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Write a comment..."
+                                      required></textarea>
+
+                        </div>
+
+
+                        <button type="submit"
+                                class="btn btn-dark">
+
+                            Post Comment
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- Display Comments -->
+            @if (comments != null && comments.Any())
+            {
+                foreach (var comment in comments)
+                {
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body p-4">
+
+                            <div class="d-flex justify-content-between
+                                                align-items-center mb-2">
+
+                                <h6 class="fw-bold mb-0">
+                                    @comment.Name
+                                </h6>
+
+                                <small class="text-muted">
+                                    @comment.DatePosted.ToString(
+                                    "MMM dd, yyyy hh:mm tt")
+                        </small>
+
+                    </div>
+
+                    <p class="mb-0 text-muted">
+                        @comment.Message
+                    </p>
+
+                </div>
+
+            </div>
+                        }
+            }
+            else
+            {
+                <div class="text-center py-4">
+
+                    <p class="text-muted">
+                        No comments yet. Be the first to leave a comment.
+                    </p>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

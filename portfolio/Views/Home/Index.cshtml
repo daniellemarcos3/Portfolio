@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container py-5">
+
+    <div class="row align-items-center min-vh-75">
+
+        <div class="col-md-7">
+
+            <p class="text-uppercase text-muted fw-semibold mb-2">
+                My Portfolio
+            </p>
+
+            <h1 class="display-4 fw-bold mb-3">
+                Hi, I'm Danielle Allyne O.Marcos
+            </h1>
+
+            <p class=".lead text-muted mb-4">
+                I’m a BSIT student passionate about creating web applications and exploring new technologies.
+            </p>
+
+            <div class="d-flex gap-3">
+
+                <a asp-controller="Projects"
+                   asp-action="Index"
+                   class="btn btn-dark px-4 py-2">
+                    View My Projects
+                </a>
+
+                <a asp-controller="Home"
+                   asp-action="About"
+                   class="btn btn-outline-dark px-4 py-2">
+                    About Me
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-5 text-center mt-5 mt-md-0">
+
+            <div class="p-4">
+
+                <div class="rounded-circle bg-dark text-white d-flex
+                            align-items-center justify-content-center mx-auto"
+                     style="width: 220px; height: 220px;">
+
+                    <span class="display-1 fw-bold">
+                        DM
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
